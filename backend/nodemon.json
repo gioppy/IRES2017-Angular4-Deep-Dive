@@ -1,0 +1,8 @@
+{
+  "env": {
+    "MONGO_ATLAS_PW": "y6CCNBk9LEA6",
+    "MONGO_ATLAS_SERVER": "cluster0-shard-00-00-2jta4.mongodb.net:27017,cluster0-shard-00-01-2jta4.mongodb.net:27017,cluster0-shard-00-02-2jta4.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin",
+    "JWT_KEY": "kaAPr398dXuh",
+    "REPOSITORY_PATH": "public/repository/images"
+  }
+}

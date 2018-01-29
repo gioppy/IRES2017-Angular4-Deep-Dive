@@ -1,0 +1,723 @@
+{
+	"info": {
+		"name": "Angular Deep Dive Back-End",
+		"_postman_id": "b60fd168-0de6-e2b9-0a44-3988279f3565",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Customers",
+			"description": "",
+			"item": [
+				{
+					"name": "Index all customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{HOST}}/customers",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"customers"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Search customers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{HOST}}/customers?lastName=Ros",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"customers"
+							],
+							"query": [
+								{
+									"key": "lastName",
+									"value": "Ros",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get a customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{HOST}}/customers/5a520d2efa66160b72ddca40",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"customers",
+								"5a520d2efa66160b72ddca40"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create new customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Pippo\",\n  \"lastName\": \"Pluto\",\n  \"phoneNumber\": \"1234567890\",\n  \"email\": \"email@email.com\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/customers",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"customers"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update a customer",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"field\": \"email\",\n    \"value\": \"tech@giovannibuffa.it\"\n  }\n]"
+						},
+						"url": {
+							"raw": "{{HOST}}/customers/5a520d2efa66160b72ddca40",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"customers",
+								"5a520d2efa66160b72ddca40"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a customer",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{HOST}}/customers/5a520d2efa66160b72ddca40",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"customers",
+								"5a520d2efa66160b72ddca40"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"description": "",
+			"item": [
+				{
+					"name": "Index all orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{HOST}}/orders",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"orders"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get an order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{HOST}}/orders/5a5234f6c74eb60d3d1ce3d9",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"orders",
+								"5a5234f6c74eb60d3d1ce3d9"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create an order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"client\": \"5a520d2efa66160b72ddca40\",\n  \"description\": \"Scheda audio non funzionante\",\n  \"backupData\": true,\n  \"includedAccessories\": [\n    \"Pendrive\",\n    \"HDD\",\n    \"Pippo\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/orders",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"orders"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update an order",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"field\": \"backupData\",\n    \"value\": false\n  }\n]"
+						},
+						"url": {
+							"raw": "{{HOST}}/orders/5a52315ff5f3a90d1c129a1e",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"orders",
+								"5a52315ff5f3a90d1c129a1e"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an order",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{HOST}}/orders/5a52315ff5f3a90d1c129a1e",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"orders",
+								"5a52315ff5f3a90d1c129a1e"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"description": "",
+			"item": [
+				{
+					"name": "Index all users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"tech@giovannibuffa.it\",\n\t\"username\": \"admin\",\n\t\"password\": \"morpheus\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/users",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve one user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"tech@giovannibuffa.it\",\n\t\"username\": \"admin\",\n\t\"password\": \"morpheus\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/users/5a524764634d800e2e8edc5e",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"users",
+								"5a524764634d800e2e8edc5e"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create an user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlY2hAZ2lvdmFubmlidWZmYS5pdCIsInVpZCI6IjVhNTI0NzY0NjM0ZDgwMGUyZThlZGM1ZSIsImlhdCI6MTUxNTQyNzY4MiwiZXhwIjoxNTE1NDMxMjgyfQ.tmSN_wcUiH4RELwefl9rJlB1GL_gvhaq0kNnaFyOcTg"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"pippo\",\n\t\"email\": \"info@giovannibuffa.it\",\n\t\"password\": \"morpheus\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/users/register",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Check if username/email is available",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"check\": \"email\",\n\t\"value\": \"giova.buffa@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/users/check",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"users",
+								"check"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Login as user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"amministratore\",\n\t\"password\": \"morpheus\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/users/login",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlY2hAZ2lvdmFubmlidWZmYS5pdCIsInVpZCI6IjVhNTI0NzY0NjM0ZDgwMGUyZThlZGM1ZSIsImlhdCI6MTUxNTQzNTI4OSwiZXhwIjoxNTE1NDM4ODg5LCJqdGkiOiIxIn0.xw5h90slPFMJs-vUy_5TFoWGDnSq4m5kkHAP1YSvZk0",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUpsYldGcGJDSTZJblJsWTJoQVoybHZkbUZ1Ym1saWRXWm1ZUzVwZENJc0luVnBaQ0k2SWpWaE5USTBOelkwTmpNMFpEZ3dNR1V5WlRobFpHTTFaU0lzSW1saGRDSTZNVFV4TlRRek5USTRPU3dpWlhod0lqb3hOVEUxTkRNNE9EZzVMQ0pxZEdraU9pSXhJbjAueHc1aDkwc2xQRk1Kcy12VXlfNVRGb1dHRG5TcTRtNWtrSEFQMVlTdlprMCIsImlhdCI6MTUxNTQzNTI4OSwiZXhwIjoxNTE1NDM4ODg5LCJqdGkiOiIyIn0.P2BOayqxrZRZ9Y8xqTBJkKjscoD0bJMIPSeeXkHy7UU\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/users/login/refresh",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"users",
+								"login",
+								"refresh"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update a user",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlY2hAZ2lvdmFubmlidWZmYS5pdCIsInVpZCI6IjVhNTI0NzY0NjM0ZDgwMGUyZThlZGM1ZSIsImlhdCI6MTUxNTQ4NDg2NCwiZXhwIjoxNTE1NDg4NDY0LCJqdGkiOiIxIn0.OSkq1PoXmpgTLLASs_DLWkB7bYx9xGFJy3yHuLtGrZA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"field\": \"role\",\n\t\t\"value\": \"5a547640781a680b00bb449c\"\n\t}\n]"
+						},
+						"url": {
+							"raw": "{{HOST}}/users/5a524764634d800e2e8edc5e",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"users",
+								"5a524764634d800e2e8edc5e"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlY2hAZ2lvdmFubmlidWZmYS5pdCIsInVpZCI6IjVhNTI0NzY0NjM0ZDgwMGUyZThlZGM1ZSIsImlhdCI6MTUxNTQyNzY4MiwiZXhwIjoxNTE1NDMxMjgyfQ.tmSN_wcUiH4RELwefl9rJlB1GL_gvhaq0kNnaFyOcTg"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{HOST}}/users/5a524a4bc61eed0e40ecb1ab",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"users",
+								"5a524a4bc61eed0e40ecb1ab"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Roles",
+			"description": "",
+			"item": [
+				{
+					"name": "Index all roles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlY2hAZ2lvdmFubmlidWZmYS5pdCIsInVpZCI6IjVhNTI0NzY0NjM0ZDgwMGUyZThlZGM1ZSIsImlhdCI6MTUxNTQ4NDg2NCwiZXhwIjoxNTE1NDg4NDY0LCJqdGkiOiIxIn0.OSkq1PoXmpgTLLASs_DLWkB7bYx9xGFJy3yHuLtGrZA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"tech@giovannibuffa.it\",\n\t\"username\": \"admin\",\n\t\"password\": \"morpheus\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/roles",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"roles"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get a role",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlY2hAZ2lvdmFubmlidWZmYS5pdCIsInVpZCI6IjVhNTI0NzY0NjM0ZDgwMGUyZThlZGM1ZSIsImlhdCI6MTUxNTUyMDM3MCwiZXhwIjoxNTE1NTIzOTcwLCJqdGkiOiIxIn0.GLlBhohWKlHV-5uFxo_YP16K3e1G1uHwrV5Ne45CI_o"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"tech@giovannibuffa.it\",\n\t\"username\": \"admin\",\n\t\"password\": \"morpheus\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/roles/5a547640781a680b00bb449c",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"roles",
+								"5a547640781a680b00bb449c"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create a role",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlY2hAZ2lvdmFubmlidWZmYS5pdCIsInVpZCI6IjVhNTI0NzY0NjM0ZDgwMGUyZThlZGM1ZSIsImlhdCI6MTUxNTQyNzY4MiwiZXhwIjoxNTE1NDMxMjgyfQ.tmSN_wcUiH4RELwefl9rJlB1GL_gvhaq0kNnaFyOcTg",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"administrator\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/roles",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"roles"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a role",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlY2hAZ2lvdmFubmlidWZmYS5pdCIsInVpZCI6IjVhNTI0NzY0NjM0ZDgwMGUyZThlZGM1ZSIsImlhdCI6MTUxNTUxNjc1MywiZXhwIjoxNTE1NTIwMzUzLCJqdGkiOiIxIn0.HRXz6xdIDjLv_OvcDPizXtyjPUg7JqiQeoCkcad01vU"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{HOST}}/roles/5a54ddafd93e250f2aa4bb88",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"roles",
+								"5a54ddafd93e250f2aa4bb88"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6af12934-6edf-4abc-9402-746f96540720",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "2b681be0-1585-40a6-bb7d-d8f5fe132880",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "bc5c82ad-4b06-4f50-bf37-7136c670dd8c",
+			"key": "HOST",
+			"value": "http://localhost:3000",
+			"type": "text"
+		}
+	]
+}
