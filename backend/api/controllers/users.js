@@ -132,11 +132,11 @@ exports.userLogin = (request, response, next) => {
             email: user[0].email,
             uid: user[0]._id
           }, process.env.JWT_KEY, {
-            expiresIn: '1m',
+            expiresIn: '1h',
             jwtid: '1'
           });
           const refreshToken = jwt.sign({token: accessToken}, process.env.JWT_KEY, {
-            expiresIn: '1h',
+            expiresIn: '2h',
             jwtid: '2'
           });
 
@@ -182,11 +182,11 @@ exports.userRefresh = (request, response, next) => {
       email: original.email,
       uid: original.uid
     }, process.env.JWT_KEY, {
-      expiresIn: '1m',
+      expiresIn: '1h',
       jwtid: '1'
     });
     const refreshToken = jwt.sign({token: accessToken}, process.env.JWT_KEY, {
-      expiresIn: '1h',
+      expiresIn: '2h',
       jwtid: '2'
     });
 
