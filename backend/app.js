@@ -31,7 +31,6 @@ app.use((request, response, next) => {
   next();
 });
 
-// app.use('/products', productsRoutes);
 app.use('/roles', rolesRoutes);
 app.use('/users', usersRoutes);
 app.use('/customers', customersRoutes);
