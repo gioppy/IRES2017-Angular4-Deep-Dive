@@ -10,7 +10,11 @@ const ordersRoutes = require('./api/routes/assistance');
 
 const app = express();
 
-mongoose.connect(`mongodb://mongo_admin:${process.env.MONGO_ATLAS_PW}@${process.env.MONGO_ATLAS_SERVER}`, {useMongoClient: true});
+mongoose.connect(`mongodb://${process.env.MONGO_ATLAS_SERVER}`, {
+  user: process.env.MONGO_ATLAS_USER,
+  pass: process.env.MONGO_ATLAS_PW,
+  useMongoClient: true
+});
 mongoose.Promise = global.Promise;
 
 app.use(morgan('dev'));
