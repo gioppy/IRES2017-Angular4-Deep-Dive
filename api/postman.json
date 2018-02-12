@@ -127,6 +127,65 @@
 					"response": []
 				},
 				{
+					"name": "Create new customer (with image)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "firstName",
+									"value": "Testing",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Image",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "1234567890",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "email@email.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"value": "",
+									"description": "",
+									"type": "file"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/customers",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"customers"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
 					"name": "Update a customer",
 					"request": {
 						"method": "PATCH",
@@ -148,6 +207,31 @@
 							"path": [
 								"customers",
 								"5a520d2efa66160b72ddca40"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update a customer (with image)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{HOST}}/customers/5a7d6f8f081d510c38bcb7e8",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"customers",
+								"5a7d6f8f081d510c38bcb7e8"
 							]
 						},
 						"description": ""
@@ -358,13 +442,42 @@
 							"raw": "{\n\t\"email\": \"tech@giovannibuffa.it\",\n\t\"username\": \"admin\",\n\t\"password\": \"morpheus\"\n}"
 						},
 						"url": {
-							"raw": "{{HOST}}/users/5a524764634d800e2e8edc5e",
+							"raw": "{{HOST}}/users/user/5a524764634d800e2e8edc5e",
 							"host": [
 								"{{HOST}}"
 							],
 							"path": [
 								"users",
+								"user",
 								"5a524764634d800e2e8edc5e"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get loggedin user profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"tech@giovannibuffa.it\",\n\t\"username\": \"admin\",\n\t\"password\": \"morpheus\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/users/profile",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"users",
+								"profile"
 							]
 						},
 						"description": ""
@@ -434,6 +547,9 @@
 				{
 					"name": "Login as user",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -690,6 +806,16 @@
 			]
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlY2hAZ2lvdmFubmlidWZmYS5pdCIsInVpZCI6IjVhNTI0NzY0NjM0ZDgwMGUyZThlZGM1ZSIsImlhdCI6MTUxODQzNTAzOSwiZXhwIjoxNTE4NDM4NjM5LCJqdGkiOiIxIn0.rap9BZNEo8TjXoRBSN6XLookI-zib58qFpVfTl0xtOI",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -714,7 +840,7 @@
 	],
 	"variable": [
 		{
-			"id": "bc5c82ad-4b06-4f50-bf37-7136c670dd8c",
+			"id": "279ebd56-c560-4ac7-98e3-da6eecc96740",
 			"key": "HOST",
 			"value": "http://localhost:3000",
 			"type": "text"
