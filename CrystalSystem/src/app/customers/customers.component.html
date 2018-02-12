@@ -1,8 +1,29 @@
-<p>
-  customers works!
-</p>
-<a [routerLink]="['/customers', 'all']">View all</a>
-<a [routerLink]="['/customers', 'add']">Add a customer</a>
-<a [routerLink]="['/customers', 'pippo', 'view']">View pippo</a>
+<div class="content">
+  <h1 class="title">Customers</h1>
+</div>
 
-<router-outlet></router-outlet>
+<bul-columns>
+  <bul-column [colSize]="4">
+    <aside class="menu">
+      <p class="menu-label">Clienti</p>
+      <ul class="menu-list">
+        <li>
+          <a
+              [routerLink]="['/customers']"
+              routerLinkActive="is-active"
+              [routerLinkActiveOptions]="{exact: true}">
+            Clienti
+          </a>
+          <ul>
+            <li><a [routerLink]="['/customers', 'add']" routerLinkActive="is-active">Aggiungi un cliente</a></li>
+            <li><a [routerLink]="['/customers', 'search']" routerLinkActive="is-active">Cerca un cliente</a></li>
+          </ul>
+        </li>
+      </ul>
+      <p class="menu-label">Orders</p>
+    </aside>
+  </bul-column>
+  <bul-column>
+    <router-outlet></router-outlet>
+  </bul-column>
+</bul-columns>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
@@ -23,15 +23,23 @@ export class CustomerRetrieveComponent implements OnInit {
   customer: ICustomer;
 
   ngOnInit() {
-    this.route.params
-      .switchMap((params) => this.customersService.retrieve(params.cid))
-      /*.map((customer) => customer.values.firstName + ' ' + customer.values.lastName)*/
+    // this.route.snapshot.params;
+
+    // BETTER!
+    /*this.route.params
+      .switchMap((params: Params) => this.customersService.retrieve(params.cid))
+      // .map((customer) => customer.values.firstName + ' ' + customer.values.lastName)
       .subscribe(
         (customer: ICustomerResponse) => this.customer = customer.values,
         (error) => {
           this.router.navigate(['/customers']);
         }
-      );
+      );*/
+
+    // RESOLVE
+    this.customer = (<ICustomerResponse>this.route.snapshot.data['customer']).values;
+
+    // BAD!
     /*this.route.params
       .subscribe(
         (params) => {

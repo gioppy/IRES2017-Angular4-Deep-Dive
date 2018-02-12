@@ -18,4 +18,8 @@ export class CustomersService {
     return this.http.get<ICustomerResponse>(`${environment.apiHost}/customers/${cid}`);
   }
 
+  create(payload): Observable<any> {
+    return this.http.post(`${environment.apiHost}/customers`, payload);
+  }
+
 }

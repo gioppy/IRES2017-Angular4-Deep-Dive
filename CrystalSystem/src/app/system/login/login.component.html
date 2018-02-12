@@ -1,0 +1,46 @@
+<div class="container">
+  <bul-columns>
+    <bul-column [colSize]="6" [colOffset]="3">
+      <h1 class="is-size-2">Accedi al sistema</h1>
+      <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+        <div class="field">
+          <label for="username" class="label">Username</label>
+          <div class="control">
+            <input
+                formControlName="username"
+                type="text"
+                id="username"
+                class="input"
+                [ngClass]="{'is-danger': !loginForm.get('username').valid && loginForm.get('username').touched}"
+            />
+          </div>
+          <p class="help is-danger" *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched">Il campo <strong>username</strong> &egrave; richiesto.</p>
+        </div>
+
+        <div class="field">
+          <label for="password" class="label">Password</label>
+          <div class="control">
+            <input
+                formControlName="password"
+                type="password"
+                id="password"
+                class="input"
+                [ngClass]="{'is-danger': !loginForm.get('password').valid && loginForm.get('password').touched}"
+            />
+          </div>
+          <p class="help is-danger" *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">Il campo <strong>password</strong> &egrave; richiesto.</p>
+        </div>
+
+        <div class="field">
+          <button
+              bulButton
+              bulButtonColor="primary"
+              type="submit"
+              [disabled]="!loginForm.valid">
+            Accedi
+          </button>
+        </div>
+      </form>
+    </bul-column>
+  </bul-columns>
+</div>

@@ -1,3 +1,45 @@
-<p>
-  customer-create works!
-</p>
+<div class="content">
+  <h2 class="title">Inserisci un nuovo cliente</h2>
+</div>
+<form [formGroup]="customerForm" (ngSubmit)="saveCustomer()">
+  <div class="field">
+    <label for="firstname" class="label">Nome</label>
+    <div class="control">
+      <input type="text" class="input" id="firstname" formControlName="firstName" />
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="lastname" class="label">Cognome</label>
+    <div class="control">
+      <input type="text" class="input" id="lastname" formControlName="lastName" />
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="phone" class="label">Numero di telefono</label>
+    <div class="control">
+      <input type="text" class="input" id="phone" formControlName="phoneNumber" />
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="email" class="label">Email</label>
+    <div class="control">
+      <input type="email" class="input" id="email" formControlName="email" />
+    </div>
+  </div>
+
+  <div class="field is-grouped">
+    <div class="control">
+      <button
+          bulButton
+          bulButtonColor="success"
+          type="submit"
+          [disabled]="!customerForm.valid">Salva</button>
+    </div>
+    <div class="control">
+      <a bulButton bulButtonColor="info" [bulButtonStyle]="['outlined']" [routerLink]="['../']">Annulla</a>
+    </div>
+  </div>
+</form>
