@@ -32,7 +32,30 @@ exports.userIndex = (request, response, next) => {
 };
 
 exports.userRetrieve = (request, response, next) => {
-  User.findById(request.params.uid)
+  const uid = request.params.uid;
+
+  User.findById(uid)
+    .select('_id username email role')
+    .exec()
+    .then(result => {
+      response.status(200).json({
+        status: 'OK',
+        values: result
+      })
+    })
+    .catch(error => {
+      response.status(500).json({
+        status: 'ERROR',
+        message: error
+      })
+    });
+};
+
+exports.userProfile = (request, response, next) => {
+  const token = request.headers.authorization;
+  const userData = jwt.verify(token.split(' ')[1], process.env.JWT_KEY);
+
+  User.findById(userData.uid)
     .select('_id username email role')
     .exec()
     .then(result => {
@@ -136,7 +159,7 @@ exports.userLogin = (request, response, next) => {
             jwtid: '1'
           });
           const refreshToken = jwt.sign({token: accessToken}, process.env.JWT_KEY, {
-            expiresIn: '2h',
+            expiresIn: '1.5h',
             jwtid: '2'
           });
 
@@ -186,7 +209,7 @@ exports.userRefresh = (request, response, next) => {
       jwtid: '1'
     });
     const refreshToken = jwt.sign({token: accessToken}, process.env.JWT_KEY, {
-      expiresIn: '2h',
+      expiresIn: '1.5h',
       jwtid: '2'
     });
 

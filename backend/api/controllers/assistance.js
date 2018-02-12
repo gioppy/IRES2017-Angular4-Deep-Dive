@@ -12,7 +12,7 @@ const Order = require('../models/assistance');
  */
 exports.assistanceIndex = (request, response, next) => {
   Order.find()
-    .select('_id customer description state')
+    .select('_id customer description state created')
     .populate('customer', 'firstName lastName')
     .exec()
     .then(result => {
@@ -27,7 +27,8 @@ exports.assistanceIndex = (request, response, next) => {
               fullName: `${order.customer.firstName} ${order.customer.lastName}`
             },
             description: order.description,
-            state: order.state
+            state: order.state,
+            created: order.created
           }
         })
       });
@@ -49,7 +50,7 @@ exports.assistanceIndex = (request, response, next) => {
 exports.assistanceRetrieve = (request, response, next) => {
   const aid = request.params.aid;
   Order.findById(aid)
-    .select('_id customer description includedAccessories backupData created state')
+    .select('_id customer description includedAccessories backupData created state notes')
     .populate('customer', 'firstName lastName')
     .exec()
     .then(result => {
@@ -87,6 +88,7 @@ exports.assistanceCreate = (request, response, next) => {
         customer: request.body.customer,
         description: request.body.description,
         includedAccessories: request.body.includedAccessories,
+        notes: request.body.notes,
         backupData: request.body.backupData
       });
 

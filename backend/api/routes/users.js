@@ -7,7 +7,8 @@ const checkRoleUser = require('../middleware/role-user');
 const UsersController = require('../controllers/users');
 
 router.get('/', checkAuth, checkRoleUser, UsersController.userIndex);
-router.get('/:uid', checkAuth, checkRoleUser, UsersController.userRetrieve);
+router.get('/user/:uid', checkAuth, checkRoleUser, UsersController.userRetrieve);
+router.get('/profile', checkAuth, checkRoleUser, UsersController.userProfile);
 router.post('/register', checkAuth, checkRoleUser, UsersController.userCreate);
 router.post('/login', UsersController.userLogin);
 router.post('/login/refresh', UsersController.userRefresh);

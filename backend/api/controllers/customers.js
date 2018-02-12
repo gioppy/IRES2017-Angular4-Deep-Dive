@@ -11,7 +11,7 @@ const Customer = require('../models/customer');
  */
 exports.ClientsIndex = (request, response, next) => {
   const client = Customer.find()
-    .select('_id firstName lastName')
+    .select('_id firstName lastName image phoneNumber')
     .sort({ 'lastName': 1 });
 
   if (request.query) {
@@ -24,13 +24,16 @@ exports.ClientsIndex = (request, response, next) => {
 
   client.exec()
     .then(result => {
+      setTimeout(() => {}, 1000);
       response.status(200).json({
         status: 'OK',
         count: result.length,
         values: result.map(client => {
           return {
             _id: client._id,
-            fullName: `${client.lastName} ${client.firstName}`
+            fullName: `${client.lastName} ${client.firstName}`,
+            phoneNumber: client.phoneNumber,
+            image: client.image ? `http://localhost:3000/${client.image}` : null
           }
         })
       });
@@ -52,10 +55,11 @@ exports.ClientsIndex = (request, response, next) => {
 exports.clientsRetrieve = (request, response, next) => {
   const cid = request.params.cid;
   Customer.findById(cid)
-    .select('_id firstName lastName phoneNumber email')
+    .select('_id firstName lastName phoneNumber email image')
     .exec()
     .then(result => {
       if (result) {
+        result.image = result.image ? `http://localhost:3000/${result.image}` : null;
         response.status(200).json({
           status: 'OK',
           values: result
@@ -87,7 +91,8 @@ exports.clientsCreate = (request, response, next) => {
     firstName: request.body.firstName,
     lastName: request.body.lastName,
     phoneNumber: request.body.phoneNumber,
-    email: request.body.email ? request.body.email : ''
+    email: request.body.email ? request.body.email : '',
+    image: request.file.path ? request.file.path : ''
   });
 
   client.save()
@@ -154,8 +159,21 @@ exports.clientsUpdate = (request, response, next) => {
   const cid = request.params.cid;
   const ops = {};
 
-  for (let op of request.body) {
-    ops[op.field] = op.value;
+  console.log(request['body']);
+
+  if (request['body'].fields) {
+    for (let op of request['body'].fields) {
+      ops[op.field] = op.value;
+    }
+
+    if (request['file']) {
+      ops[request['file'].fieldname] = request['file'].path
+    }
+
+  } else {
+    for (let op of request.body) {
+      ops[op.field] = op.value;
+    }
   }
 
   Customer.update({ _id: cid }, { $set: ops })
@@ -175,5 +193,5 @@ exports.clientsUpdate = (request, response, next) => {
         status: 'ERROR',
         message: error
       });
-    })
+    });
 };
