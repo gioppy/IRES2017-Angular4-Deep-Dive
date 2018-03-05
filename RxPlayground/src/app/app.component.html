@@ -10,5 +10,8 @@
   </div>
 </nav>
 <div class="section">
+  <a [routerLink]="['/']" class="navbar-item">Home</a>
+  <a [routerLink]="['/order', 1]" class="navbar-item">Primo Ordine</a>
+  <a [routerLink]="['/order', 2]" class="navbar-item">Secondo Ordine</a>
   <router-outlet></router-outlet>
 </div>

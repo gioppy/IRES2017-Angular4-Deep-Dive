@@ -7,3 +7,7 @@
     <button type="button" class="button is-black" (click)="authRequest()">AUTH REQUEST</button>
   </div>
 </div>
+<div class="section">
+  <app-highchart [settings]="chartSettings"></app-highchart>
+  <button type="button" class="button is-warning" (click)="updateChart()">Update chart</button>
+</div>

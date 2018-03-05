@@ -15,11 +15,12 @@ const routes: Routes = [
     path: '',
     component: LoginComponent
   },
-  {
+  // Questi path sono stati esportati nel modulo customers-routing.module
+  /*{
     path: 'customers',
     component: CustomersComponent,
-    /*canActivate: [AuthGuard],*/
-    /*canActivateChild: [AuthGuard],*/
+    // canActivate: [AuthGuard],
+    // canActivateChild: [AuthGuard],
     children: [
       { path: '', component: CustomerListComponent, resolve: {
         customers: CustomerListResolve
@@ -30,10 +31,10 @@ const routes: Routes = [
         customer: CustomerRetrieveResolve
       } }
     ]
-  },
-  {
+  },*/
+  /*{
     path: '404',
-    /*component: NotFoundComponent*/
+    // component: NotFoundComponent
     component: ErrorComponent,
     data: {
       message: 'Page not found'
@@ -49,7 +50,7 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: '/404'
-  }
+  }*/
 ];
 
 @NgModule({
